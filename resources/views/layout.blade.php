@@ -21,6 +21,7 @@ Released   : 20140225
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
     <link href="/css/default.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/sty.css" rel="stylesheet" type="text/css" media="all" />
 
     @yield('head')
 
@@ -34,8 +35,20 @@ Released   : 20140225
 </div>
 <div id="header-wrapper">
     <div id="header" class="container">
+        <div id="menuAuth">
+            <ul>
+                <li class=""><a href="/" accesskey="1" title="">Авторизация</a></li>
+                <li class=""><a href="/articles" accesskey="2" title="">Регистрация</a></li>
+            </ul>
+        </div>
         <div id="logo">
             <h1><a href="/">SimpleWork</a></h1>
+        </div>
+        <div>
+            <form>
+                <input type="text" placeholder="Искать здесь...">
+                <button type="submit"></button>
+            </form>
         </div>
         <div id="menu">
             <ul>
