@@ -21,6 +21,9 @@
                 </div>
             </div>
         </div>
+        @if(!request('tag'))
+        <p>{{ $articles->links() }}</p>
+        @endif
     </div>
 
 @endsection
