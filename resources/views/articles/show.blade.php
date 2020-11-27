@@ -1,6 +1,6 @@
 @extends ('layout')
 @section('head')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" rel="stylesheet"/>
+
     <link href="/css/comment.css" rel="stylesheet"/>
     <script src="/js/comment.js"></script>
     <script src="/js/likes.js"></script>

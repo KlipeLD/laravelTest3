@@ -1,5 +1,5 @@
-<hr>
-    <div id="comment">
+    <div id="content">
+        <hr>
         <div id="page" class="container">
             <H1 class="heading has-text-weight-bold is-size-3">Add your comment</H1>
             <form id="contactform" method="POST" class="validateform">
@@ -32,10 +32,11 @@
                 </div>
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link"  type="submit">Submit</button>
+                        <button class="button is-link" name="sub1" id="sub1" type="submit">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
+        <hr>
     </div>
-<hr>
+

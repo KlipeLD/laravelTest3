@@ -22,7 +22,10 @@ Released   : 20140225
     <link href="/css/default.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/sty.css" rel="stylesheet" type="text/css" media="all" />
-
+    <link href="/css/footer.css" rel="stylesheet" type="text/css" media="all" />
+    <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script src="https://use.fontawesome.com/ce3d8a7c5c.js"></script>
     @yield('head')
 
 
@@ -60,9 +63,23 @@ Released   : 20140225
 
 </div>
 @yield('content')
-
-<div id="copyright" class="container">
-    <p>&copy; Untitled. All rights reserved. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-</div>
 </body>
+<footer>
+   <center> <section class='contact'>
+        <ul class='icons'>
+            Для связи со мной:<br>
+            <li><a href="https://github.com/KlipeLD" class="icon fa-github"><span class="label">Github</span></a></li>
+            <li><a href="https://bitbucket.org/Klipe_LD/" class="icon fa-bitbucket"><span class="label">Bitbucket</span></a></li>
+            <li><a href="https://www.drive2.ru/users/klipe-ld" class="icon fa-car"><span class="label">Drive2</span></a></li>
+            <li><a href="https://vk.com/klipe_ld" class="icon fa-vk"><span class="label">Vk</span></a></li>
+            <li><a href="skype://klipe_ld?chat" class="icon fa-skype"><span class="label">Skype</span></a></li>
+            <li><a href="viber://add?number=375257932803" class="icon fa-phone"><span class="label">Viber</span></a></li>
+            <li><a href="https://t.me/Klipe_LD" class="icon fa-paper-plane"><span class="label">Telegram</span></a></li>
+            <li><a href="https://www.instagram.com/klipe_ld" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="https://www.facebook.com/klipe.ld" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="https://plus.google.com/u/0/108435129923345144325" class="icon fa-google-plus"><span class="label">Google</span></a></li>
+        </ul>
+    </section>
+    <p>made with love by - <a href='https://belspecauto.by'>Y.Yantsevich</a></p></center>
+</footer>
 </html>
