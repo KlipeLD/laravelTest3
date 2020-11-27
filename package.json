@@ -24,7 +24,13 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@baoshishu/vue-editor": "^0.3.0",
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1"
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "prosemirror-utils": "^0.9.6",
+        "tiptap": "^1.30.0",
+        "tiptap-extensions": "^1.33.2",
+        "v-tooltip": "^2.0.3",
+        "vue-simplemde": "^1.1.2"
     }
 }

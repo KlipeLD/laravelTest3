@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')
     ->middleware('auth');
+
 Route::get('/', 'App\Http\Controllers\PostsController@indexMain')->name('welcome');
 Route::get('/articles', 'App\Http\Controllers\PostsController@index')->name('articles.index');
 Route::post('/articles', 'App\Http\Controllers\PostsController@store');

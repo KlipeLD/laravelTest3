@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('short_body');
             $table->text('body');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('category');
+            $table->unsignedBigInteger('category')->default(0);
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();

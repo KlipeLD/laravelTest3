@@ -15,15 +15,32 @@
                     <H1 class="heading has-text-weight-bold is-size-4">{{$article->title}}</h1>
                     <span class="heading is-size-14">{{$article->short_body}}</span>
                 </div>
+                <p>Категория:  <a href="{{route('articles.index',['category'=>$article->art_cat])}}">{{$article->art_cat}}</a></p>
                 <p><img src="/images/banner.jpg" alt="" class="image image-full" /> </p>
                 <p>{{$article->body}}</p>
-                <p>Количество просмотров: </p><p id="views"></p>
-                <p>Количество лайков: </p><p id="likes"></p>
-                <p><img onclick="changeLike();" src="/images/elements/like.png" alt="like"  /></p>
-                <p>Дата публикации: {{$article->created_at}}</p>
+                <table>
+                    <tr>
+                        <td>
+                            <p>Дата публикации: {{$article->created_at}}</p>
+                        </td>
+                        <td>
+                            <p><i class="fa fa-eye" aria-hidden="true"></i></p>
+                        </td>
+                        <td>
+                            <p id="views"></p>
+                        </td>
+                        <td>
+                            <p><i class="fa fa-heart-o" onclick="changeLike();" aria-hidden="true"></i></p>
+                        </td>
+                        <td>
+                            <p id="likes"></p>
+                        </td>
+                    </tr>
+                </table>
+
                 <p>
-                    @foreach ($article->tags as $tag)
-                        <a href="{{route('articles.index',['tag'=>$tag->name])}}">{{$tag->name}}</a>
+                    @foreach ($article2->tags as $tag)
+                        <a href="{{route('articles.index',['tag'=>$tag->name])}}">#{{$tag->name}}   </a>
                     @endforeach
                 </p>
             </div>

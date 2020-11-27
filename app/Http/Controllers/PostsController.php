@@ -3,28 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Models\Articles;
+use App\Models\ArticlesCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class PostsController extends Controller
 {
     public function show($post)
     {
-        $post1 = Articles::where('id', $post)
+        $post1 = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
+            ->select('articles.*' ,  'articles_categories.name as art_cat')
+            ->where('articles.id', $post)
+            ->orWhere('articles.slug', $post)
+            ->first();
+
+
+        $post11 = Articles::where('id', $post)
             ->orWhere('slug', $post)
             ->firstOrFail();
 
+        $postId = $post1->id;
+
         $articles = \App\Models\Comments::latest()
-            ->where('articles_id', $post1->id)
+            ->where('articles_id', $postId)
             ->orderBy('created_at')
             ->simplePaginate(200);
-        // $articles = \App\Models\Articles::latest()->get()->paginate(6);
-        $postId = $post1->id;
+
         $post2 = Articles::findOrFail($postId);
         event('postHasViewed', $post2);
 
-        //$article = Articles::findorFail($post);
+
         return view('articles.show',[
             'article' =>$post1,
+            'article2' =>$post11,
             'comments' =>$articles
         ]);
     }
@@ -33,14 +45,36 @@ class PostsController extends Controller
     {
         if(request('tag'))
         {
-            $articles = \App\Models\Tags::where('name', request('tag'))->firstOrFail()->articles;
+            if(request('category'))
+            {
+                // можно дополнить
+                $articles = \App\Models\Tags::where('name', request('tag'))->firstOrFail()->articles;
+            }
+            else
+            {
+                $articles = \App\Models\Tags::where('name', request('tag'))->firstOrFail()->articles;
+            }
         }
         else
         {
-            $articles = \App\Models\Articles::latest()
-                ->orderBy('created_at')
-                ->simplePaginate(6);
-            // $articles = \App\Models\Articles::latest()->get()->paginate(6);
+            if(request('category'))
+            {
+               /* $articles = \App\Models\Articles::latest()
+                    ->where('articles_id', request('tag'))
+                    ->orderBy('created_at')
+                    ->simplePaginate(6);*/
+                $articles = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
+                    ->select('articles.*' ,  'articles_categories.name as art_cat')
+                    ->where('articles_categories.name', request('category'))
+                    ->simplePaginate(6);
+            }
+            else
+            {
+                $articles = \App\Models\Articles::latest()
+                    ->orderBy('created_at')
+                    ->simplePaginate(6);
+                // $articles = \App\Models\Articles::latest()->get()->paginate(6);
+            }
         }
         return view('articles.index',['articles' =>$articles]);
     }
@@ -89,15 +123,28 @@ class PostsController extends Controller
     {
         $tags = \App\Models\Tags::all();
 
-        return view('articles.create',['tags'=>\App\Models\Tags::all()]);
+        $category = ArticlesCategory::orderby('name')
+            ->get();
+
+        return view('articles.create',[
+            'tags'=>\App\Models\Tags::all(),
+            'category' => $category
+        ]);
     }
 
     public function store()
     {
         //$slug = Str::slug($name);
         $this->validateArticles();
-        $article =  new Articles(request(['title', 'short_body', 'body']));
-        $article->user_id = 1;
+        $article =  new Articles(request(['title','category','short_body', 'body']));
+        if (Auth::check())
+        {
+            $article->user_id = Auth::id();
+        }
+        else
+        {
+            $article->user_id = 0;
+        }
         $article->slug = str_slug(request('title'));
         $article->save();
         $article->tags()->attach(request('tags'));

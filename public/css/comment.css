@@ -46,19 +46,31 @@
 {
     border-radius: 4em;
 }
-.button, .input, .textarea, .select select, .file-cta, .file-name, .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis {
+.button, .input, .textarea, .file-cta, .file-name, .pagination-previous, .pagination-next, .pagination-link, .pagination-ellipsis {
     -moz-appearance: none;
     -webkit-appearance: none;
     align-items: center;
     border: 1px solid;
-    border-radius: 4px;
     box-shadow: none;
     display: inline-flex;
     font-size: 1rem;
     height: 2.25em;
     justify-content: flex-start;
     line-height: 1.5;
-
+    position: relative;
+    vertical-align: top;
+}
+.select select
+{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid;
+    box-shadow: none;
+    display: inline-flex;
+    font-size: 1rem;
+    justify-content: flex-start;
+    line-height: 1.5;
     position: relative;
     vertical-align: top;
 }

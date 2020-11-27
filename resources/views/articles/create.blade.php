@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('head')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" rel="stylesheet"/>
+    <link href="/css/comment.css" rel="stylesheet"/>
 @endsection
 
 @section('content')
@@ -10,6 +10,14 @@
             <H1 class="heading has-text-weight-bold is-size-4">New Article</H1>
             <form method="post" action="/articles">
                 @csrf
+                <div class="field">
+                    <label class="label" for="category">Category</label>
+                </div>
+                <select class='select control' name='category' id='category' >
+                    @foreach($category as $cat)
+                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                    @endforeach
+                </select>
                 <div class="field">
                     <label class="label" for="title">Title</label>
                 </div>
@@ -40,6 +48,23 @@
                         <p class="help is-danger">{{$errors->first('body')}}</p>
                     @enderror
                 </div>
+                <template>
+                    <vue-simplemde v-model="content" ref="markdownEditor" />
+                </template>
+
+                <script>
+                    import VueSimplemde from 'vue-simplemde'
+
+                    export default {
+                        components: {
+                            VueSimplemde
+                        }
+                    }
+                </script>
+
+                <style>
+                    @import '~simplemde/dist/simplemde.min.css';
+                </style>
                 <div class="field">
                     <label class="label" for="short_body">Tags</label>
                 </div>
