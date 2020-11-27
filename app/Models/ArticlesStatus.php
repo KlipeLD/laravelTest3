@@ -12,4 +12,8 @@ class ArticlesStatus extends Model
     {
         return $this->hasMany(Comments::class);
     }
+    public function articles()
+    {
+        return $this->hasMany(Articles::class);
+    }
 }

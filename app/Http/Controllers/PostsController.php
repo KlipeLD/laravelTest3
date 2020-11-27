@@ -27,6 +27,7 @@ class PostsController extends Controller
 
         $articles = \App\Models\Comments::latest()
             ->where('articles_id', $postId)
+            ->where('moderation','1')
             ->orderBy('created_at')
             ->simplePaginate(200);
 
@@ -100,10 +101,24 @@ class PostsController extends Controller
         else
         {
             $articles = \App\Models\Articles::latest()
+                ->where('status','1')
                 ->orderBy('created_at')
                 ->simplePaginate(6);
         }
         return view('articles.index',['articles' =>$articles]);
+    }
+
+    public function indexAdmin()
+    {
+        /*$articles = \App\Models\Articles::latest()
+            ->orderBy('created_at')
+            ->simplePaginate(6);*/
+        $articles = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
+            ->leftjoin('articles_status','articles.status','=','articles_status.id')
+            ->select('articles.*' ,  'articles_categories.name as art_cat','articles_status.name as art_status')
+            ->orderby('created_at', 'desc')
+            ->simplePaginate(300);
+        return view('admin.articles.index',['articles' =>$articles]);
     }
 
     public function indexMain()
@@ -113,7 +128,6 @@ class PostsController extends Controller
             ->get();
 
         return view('welcome',['articles' =>$articles]);
-        // return dd($articles);
     }
 
     public function clickLikes()
@@ -180,7 +194,12 @@ class PostsController extends Controller
 
     public function edit(Articles $post)
     {
-        //$article = Articles::findorFail($articleId);
+       /* $post1 = Articles::where('id', $post)
+            ->orWhere('slug', $post)
+            ->firstOrFail();*/
+
+
+       // $article = Articles::findorFail($post);
         return view('articles.edit',['article' =>$post]);
     }
 
@@ -191,10 +210,25 @@ class PostsController extends Controller
         return redirect($post->path());
     }
 
-    public function destroy()
+    public function destroy($post)
     {
-        $articles = Articles::latest()->get();
-        return view('articles.index',['articles' =>$articles]);
+        DB::delete('delete from articles where id = ?',[$post]);
+        $articles = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
+            ->leftjoin('articles_status','articles.status','=','articles_status.id')
+            ->select('articles.*' ,  'articles_categories.name as art_cat','articles_status.name as art_status')
+            ->orderby('created_at', 'desc')
+            ->simplePaginate(300);
+        return view('admin.articles.index',['articles' =>$articles]);
+    }
+    public function novis($post)
+    {
+        DB::update('update articles set status = 0 where id = ?',[$post]);
+        $articles = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
+            ->leftjoin('articles_status','articles.status','=','articles_status.id')
+            ->select('articles.*' ,  'articles_categories.name as art_cat','articles_status.name as art_status')
+            ->orderby('created_at', 'desc')
+            ->simplePaginate(300);
+        return view('admin.articles.index',['articles' =>$articles]);
     }
 
     protected function validateArticles()
@@ -202,21 +236,8 @@ class PostsController extends Controller
         request()->validate([
             'title'=> ['required','min:3','max:255'],
             'short_body' => ['required'],
-            'body' => ['required'],
-            'tags' => 'exists:tags,id'
+            'body' => ['required']
         ]);
     }
 
-    public function postSearch()
-    {
-        $q = Input::get('query');
-
-        $posts = $this->post->whereRaw(
-            "MATCH(title,body) AGAINST(? IN BOOLEAN MODE)",
-            array($q)
-        )->get();
-
-        return View::make('posts.index', compact('posts'));
-
-    }
 }

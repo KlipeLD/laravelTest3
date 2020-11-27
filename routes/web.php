@@ -28,4 +28,14 @@ Route::post('/articles/{post}', 'App\Http\Controllers\CommentsController@store',
 Route::get('/views', 'App\Http\Controllers\PostsController@numbViews');
 Route::get('/likes', 'App\Http\Controllers\PostsController@numbLikes');
 Route::get('/clicklike', 'App\Http\Controllers\PostsController@clickLikes');
-
+Route::get('/aarticles', 'App\Http\Controllers\PostsController@indexAdmin')->middleware('auth');
+Route::get('/aarticles/{post}/del', 'App\Http\Controllers\PostsController@destroy')->middleware('auth');
+Route::get('/articles/{post}/novis', 'App\Http\Controllers\PostsController@novis')->middleware('auth');
+Route::get('/acomments', 'App\Http\Controllers\CommentsController@indexAdmin')->middleware('auth');
+Route::get('/acomments/{comment}/add', 'App\Http\Controllers\CommentsController@publicCom')->middleware('auth');
+Route::get('/acomments/{comment}/del', 'App\Http\Controllers\CommentsController@destroy')->middleware('auth');
+Route::get('/acategory', 'App\Http\Controllers\CategoresController@indexAdmin')->middleware('auth');
+Route::get('/acategory/{category}/del', 'App\Http\Controllers\CategoresController@destroy')->middleware('auth');
+Route::get('/acategory/{category}/edit', 'App\Http\Controllers\CategoresController@edit')->middleware('auth');
+Route::get('/acategory/{category}', 'App\Http\Controllers\CategoresController@indexAdmin')->middleware('auth')->name('admin.categories.index');
+Route::put('/acategory/{category}', 'App\Http\Controllers\CategoresController@update');
