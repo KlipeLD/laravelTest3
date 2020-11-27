@@ -28,3 +28,4 @@ Route::post('/articles/{post}', 'App\Http\Controllers\CommentsController@store',
 Route::get('/views', 'App\Http\Controllers\PostsController@numbViews');
 Route::get('/likes', 'App\Http\Controllers\PostsController@numbLikes');
 Route::get('/clicklike', 'App\Http\Controllers\PostsController@clickLikes');
+

@@ -21,6 +21,7 @@ class CreateArticlesTable extends Migration
             $table->text('body');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('category')->default(0);
+            $table->unsignedBigInteger('status')->default(0);
             $table->unsignedBigInteger('likes')->default(0);
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();

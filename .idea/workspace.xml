@@ -145,6 +145,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\laravelTest3\public\css" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\laravelTest3\public\fonts" />
       <recent name="C:\xampp\htdocs\laravelTest3\resources\views" />
@@ -166,7 +169,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606412920055</updated>
       <workItem from="1606412922492" duration="24612000" />
-      <workItem from="1606439702301" duration="18597000" />
+      <workItem from="1606439702301" duration="27083000" />
     </task>
     <servers />
   </component>

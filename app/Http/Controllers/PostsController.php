@@ -13,11 +13,11 @@ class PostsController extends Controller
     public function show($post)
     {
         $post1 = Articles::leftjoin('articles_categories','articles.category','=','articles_categories.id')
-            ->select('articles.*' ,  'articles_categories.name as art_cat')
+            ->leftjoin('articles_status','articles.status','=','articles_status.id')
+            ->select('articles.*' ,  'articles_categories.name as art_cat', 'articles_status.name as art_status')
             ->where('articles.id', $post)
             ->orWhere('articles.slug', $post)
             ->first();
-
 
         $post11 = Articles::where('id', $post)
             ->orWhere('slug', $post)
@@ -75,6 +75,33 @@ class PostsController extends Controller
                     ->simplePaginate(6);
                 // $articles = \App\Models\Articles::latest()->get()->paginate(6);
             }
+        }
+        if(request('user'))
+        {
+            $articles = Articles::leftjoin('users','articles.user_id','=','users.id')
+                ->select('articles.*' ,  'users.name as user_name')
+                ->where('users.name', request('user'))
+                ->simplePaginate(6);
+        }
+        else
+        {
+            $articles = \App\Models\Articles::latest()
+                ->orderBy('created_at')
+                ->simplePaginate(6);
+        }
+        if(request('search1'))
+        {
+            $articles = Articles::where('body','like','%'.request('search1').'%')
+                ->orWhere('title','like','%'.request('search1').'%')
+                ->orWhere('short_body','like','%'.request('search1').'%')
+                ->simplePaginate(6);
+           // $articles = DB::select("select * from articles where body like '%".request('search1')."%'");
+        }
+        else
+        {
+            $articles = \App\Models\Articles::latest()
+                ->orderBy('created_at')
+                ->simplePaginate(6);
         }
         return view('articles.index',['articles' =>$articles]);
     }
@@ -178,5 +205,18 @@ class PostsController extends Controller
             'body' => ['required'],
             'tags' => 'exists:tags,id'
         ]);
+    }
+
+    public function postSearch()
+    {
+        $q = Input::get('query');
+
+        $posts = $this->post->whereRaw(
+            "MATCH(title,body) AGAINST(? IN BOOLEAN MODE)",
+            array($q)
+        )->get();
+
+        return View::make('posts.index', compact('posts'));
+
     }
 }

@@ -23,6 +23,7 @@ Released   : 20140225
     <link href="/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/sty.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/css/footer.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/left-nav-style.css" rel="stylesheet" type="text/css" media="all" />
     <script src='http://html5shiv.googlecode.com/svn/trunk/html5.js'></script>
     <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
     <script src="https://use.fontawesome.com/ce3d8a7c5c.js"></script>
@@ -33,6 +34,28 @@ Released   : 20140225
 
 </head>
 <body>
+@auth
+    <input type="checkbox" id="nav-toggle" hidden>
+    <nav class='nav'>
+        <label for='nav-toggle' class='nav-toggle' onclick></label>
+        <div class='logo'>
+            <a href='https://klipeld.github.io/'>Test Project 3</a> <br><br>
+        </div>
+        <ul>
+            <li><a href='/aarticles'>Публикации</a>
+            <li><a href='/acomments'>Комментарии</a>
+            <li><a href='/acategory'>Категории</a>
+            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                   document.getElementById('logout-form').submit();">
+                   {{ __('Выход') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+        </ul>
+    </nav>
+@endauth
 <div id="app">
 
 </div>
@@ -55,8 +78,8 @@ Released   : 20140225
         </div>
 
         <div>
-            <form class="searchC">
-                <input class="searchC" type="text" placeholder="Искать здесь...">
+            <form class="searchC" method="GET" action="{{route('articles.index')}}">
+                <input class="searchC" type="text" name="search1" id="search1" placeholder="Искать здесь...">
                 <button class="searchC" type="submit"></button>
             </form>
         </div>
@@ -87,6 +110,6 @@ Released   : 20140225
             <li><a href="https://plus.google.com/u/0/108435129923345144325" class="icon fa-google-plus"><span class="label">Google</span></a></li>
         </ul>
     </section>
-    <p>made with love by - <a href='https://belspecauto.by'>Y.Yantsevich</a></p></center>
+    <p>made with love by - <a href='https://klipeld.github.io/'>Y.Yantsevich</a></p></center>
 </footer>
 </html>

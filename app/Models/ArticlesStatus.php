@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ArticlesStatus extends Model
 {
     use HasFactory;
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
 }

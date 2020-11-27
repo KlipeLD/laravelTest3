@@ -18,6 +18,8 @@
                 <p>Категория:  <a href="{{route('articles.index',['category'=>$article->art_cat])}}">{{$article->art_cat}}</a></p>
                 <p><img src="/images/banner.jpg" alt="" class="image image-full" /> </p>
                 <p>{{$article->body}}</p>
+                <i>{{$article->art_status}}</i><br>
+                Автор: <a href="{{route('articles.index',['user'=>$article->user->name])}}"><i>{{$article->user->name}}</i></a>
                 <table>
                     <tr>
                         <td>
