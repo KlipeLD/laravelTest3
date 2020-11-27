@@ -20,6 +20,7 @@
                 <p>Количество просмотров: </p><p id="views"></p>
                 <p>Количество лайков: </p><p id="likes"></p>
                 <p><img onclick="changeLike();" src="/images/elements/like.png" alt="like"  /></p>
+                <p>Дата публикации: {{$article->created_at}}</p>
                 <p>
                     @foreach ($article->tags as $tag)
                         <a href="{{route('articles.index',['tag'=>$tag->name])}}">{{$tag->name}}</a>

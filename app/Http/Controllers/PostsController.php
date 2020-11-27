@@ -48,7 +48,7 @@ class PostsController extends Controller
     public function indexMain()
     {
         $articles = \App\Models\Articles::latest()
-            ->Limit(6)
+            ->Limit(5)
             ->get();
 
         return view('welcome',['articles' =>$articles]);

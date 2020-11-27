@@ -4,6 +4,9 @@
     <div id="wrapper">
         <div id="page" class="container">
             <div id="content">
+                <div class="title">
+                    <center><H1 class="heading has-text-weight-bold is-size-4">Последние статьи</h1></center>
+                </div>
                 <div id="sidebar2">
                     <ul class="style1">
                         @forelse($articles as $article)

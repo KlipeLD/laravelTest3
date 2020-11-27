@@ -25,7 +25,7 @@ class CommentsFactory extends Factory
     {
         $userIds = User::pluck('id')->toArray();
         $ids = Articles::pluck('id')->toArray();
-        $fakeDate = $this->faker->date('Y-m-d','now');
+        $fakeDate = $this->faker->date('Y-m-d h:m:s','now');
         return [
             'articles_id' =>  $this->faker->randomElement($ids),
             'user_id' => $this->faker->randomElement($userIds),

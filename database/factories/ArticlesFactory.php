@@ -23,7 +23,7 @@ class ArticlesFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence;
-        $fakeDate = $this->faker->date('Y-m-d','now');
+        $fakeDate = $this->faker->date('Y-m-d h:m:s','now');
         $userIds = User::pluck('id')->toArray();
         return [
             'user_id' => $this->faker->randomElement($userIds),
