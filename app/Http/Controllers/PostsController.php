@@ -126,8 +126,14 @@ class PostsController extends Controller
         $articles = \App\Models\Articles::latest()
             ->Limit(5)
             ->get();
+        $categories = \App\Models\ArticlesCategory::latest()
 
-        return view('welcome',['articles' =>$articles]);
+            ->get();
+
+        return view('welcome',[
+            'articles' =>$articles,
+            'categories' =>$categories
+            ]);
     }
 
     public function clickLikes()
@@ -203,9 +209,10 @@ class PostsController extends Controller
         return view('articles.edit',['article' =>$post]);
     }
 
-    public function update(Articles $post)
+    public function update($post)
     {
-        $post->update($this->validateArticles());
+        //$post->update($this->validateArticles());
+        $affected = DB::update('update articles_categories set name = ? where name = ?', [\request('name'),$post]);
 
         return redirect($post->path());
     }

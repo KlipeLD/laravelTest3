@@ -23,6 +23,16 @@
                     </ul>
                 </div>
             </div>
+            <div id="sidebar">
+                <ul class="style1">
+                @foreach ($categories as $category)
+                        <li>
+                            <a href="{{route('articles.index',['category'=>$category->name])}}">{{$category->name}}</a>
+                        </li>
+
+                @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 

@@ -36,6 +36,6 @@ Route::get('/acomments/{comment}/add', 'App\Http\Controllers\CommentsController@
 Route::get('/acomments/{comment}/del', 'App\Http\Controllers\CommentsController@destroy')->middleware('auth');
 Route::get('/acategory', 'App\Http\Controllers\CategoresController@indexAdmin')->middleware('auth');
 Route::get('/acategory/{category}/del', 'App\Http\Controllers\CategoresController@destroy')->middleware('auth');
+Route::get('/acategory/{category}', 'App\Http\Controllers\CategoresController@indexAdmin')->middleware('auth');
 Route::get('/acategory/{category}/edit', 'App\Http\Controllers\CategoresController@edit')->middleware('auth');
-Route::get('/acategory/{category}', 'App\Http\Controllers\CategoresController@indexAdmin')->middleware('auth')->name('admin.categories.index');
 Route::put('/acategory/{category}', 'App\Http\Controllers\CategoresController@update');
