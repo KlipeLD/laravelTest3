@@ -140,7 +140,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/fonts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../laravel8" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -166,7 +166,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606412920055</updated>
       <workItem from="1606412922492" duration="24612000" />
-      <workItem from="1606439702301" duration="1168000" />
+      <workItem from="1606439702301" duration="1892000" />
     </task>
     <servers />
   </component>
@@ -178,9 +178,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="370" y="93" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1606417898674" />
-    <state x="420" y="93" key="FileChooserDialogImpl" timestamp="1606430227230">
+    <state x="431" y="70" key="FileChooserDialogImpl" timestamp="1606441429615">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="420" y="93" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1606430227230" />
+    <state x="431" y="70" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1606441429615" />
   </component>
 </project>

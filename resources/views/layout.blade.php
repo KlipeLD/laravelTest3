@@ -40,13 +40,20 @@ Released   : 20140225
     <div id="header" class="container">
         <div id="menuAuth">
             <ul>
-                <li class=""><a href="/login" accesskey="1" title="">Авторизация</a></li>
-                <li class=""><a href="/register" accesskey="2" title="">Регистрация</a></li>
+                @auth
+                    <li class=""><a href="/home" accesskey="1" title="">Добро пожаловать на сайт, {{auth()->user()->name}}</a></li>
+                @else
+                    <li class=""><a href="/login" accesskey="1" title="">Авторизация</a></li>
+                    <li class=""><a href="/register" accesskey="2" title="">Регистрация</a></li>
+                @endauth
+
             </ul>
         </div>
         <div id="logo">
-            <h1><a href="/">SimpleWork</a></h1>
+            <h1><a href="/">SimpleWork</a></h1><br>
+
         </div>
+
         <div>
             <form class="searchC">
                 <input class="searchC" type="text" placeholder="Искать здесь...">
